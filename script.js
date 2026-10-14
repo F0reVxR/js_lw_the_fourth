@@ -591,8 +591,19 @@ function generateOdds_Arr(len) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices() {
+function getElementByIndices_Cycle(arr, indices) {
+    let current = arr;
+    for (let i = 0; i < indices.length; ++i) {
+        let index = indices[i];
+        current = current[index];
+    }
+    return current;
 }
+function getElementByIndices_Arr(arr, indices) {
+    return indices.reduce((res, idx) => res[idx], arr);
+}
+// console.log(getElementByIndices_Cycle(['one','two','three'], [2]))
+// console.log(getElementByIndices_Arr(['one','two','three'], [2]))
 /**
  * Returns the number of all falsy values in the specified array.
  *
