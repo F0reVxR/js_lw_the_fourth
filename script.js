@@ -616,8 +616,20 @@ function getElementByIndices_Arr(arr, indices) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount() {
+function getFalsyValuesCount_Cycle(arr) {
+    let count = 0;
+    for (let i = 0; i < arr.length; ++i){
+        if (!arr[i]){
+            count++;
+        }
+    }
+    return count;
 }
+function getFalsyValuesCount_Arr(arr) {
+    return arr.filter(value => !value).length;
+}
+// console.log(getFalsyValuesCount_Cycle([ null, undefined, NaN, false, 0, '' ]));
+// console.log(getFalsyValuesCount_Arr([ null, undefined, NaN, false, 0, '' ]));
 /**
  * Creates an identity matrix of the specified size.
  *
