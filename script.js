@@ -855,8 +855,32 @@ function propagateItemsByPositionIndex_Arr(arr) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray() {
+function shiftArray_Cycle(arr,n) {
+    if (arr.length === 0) return [];
+    let result = [...arr];
+    let steps = n % result.length;
+    if (steps > 0){
+        for (let i = 0; i < steps; ++i) {
+            let last = result.pop();
+            result.unshift(last);
+        }
+    }
+    else if (steps < 0){
+        for (let i = 0; i < Math.abs(steps); ++i){
+            let first = result.shift();
+            result.push(first);
+        }
+    }
+    return result;
 }
+function shiftArray_Arr(arr, n) {
+    if (arr.length === 0) return [];
+    let k = (n % arr.length + arr.length) % arr.length;
+    let splitIndex = arr.length - k;
+    return [...arr.slice(splitIndex), ...arr.slice(0, splitIndex)];
+}
+// console.log(shiftArray_Cycle([ 'a', 'b', 'c', null ], 2))
+// console.log(shiftArray_Arr([ 'a', 'b', 'c', null ], 2))
 /**
  * Sorts digit names.
  *
