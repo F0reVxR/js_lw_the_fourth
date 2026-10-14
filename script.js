@@ -936,5 +936,33 @@ function sortDigitNamesByNumericOrder_Arr(arr) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail() {
+function swapHeadAndTail_Cycle(arr) {
+    const len = arr.length;
+    const mid = Math.floor(len / 2);
+    const result = new Array(len);
+    const offset = len % 2 === 0 ? 0 : 1;
+    for (let i = 0; i < mid; ++i) {
+        result[i] = arr[mid + offset + i];
+    }
+    if (offset === 1){
+        result[mid] = arr[mid];
+    }
+    for (let i = 0; i < mid; ++i) {
+        result[mid + offset + i] = arr[i];
+    }
+    return result;
 }
+function swapHeadAndTail_Arr(arr) {
+    const len = arr.length;
+    const mid = Math.floor(len / 2);
+    const head = arr.slice(0, mid);
+    const tail = arr.slice(len - mid);
+    if (len % 2 === 0) {
+        return [...tail, ...head];
+    } else {
+        const center = arr[mid];
+        return [...tail, center, ...head];
+    }
+}
+// console.log(swapHeadAndTail_Cycle([ 1, 2, 3, 4, 5, 6, 7, 8 ]))
+// console.log(swapHeadAndTail_Arr([ 1, 2, 3, 4, 5, 6, 7, 8 ]))
