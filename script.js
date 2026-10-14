@@ -828,12 +828,20 @@ function findLongestIncreasingSubsequence_Arr(nums) {
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
 function propagateItemsByPositionIndex_Cycle(arr) {
-
+    let result = [];
+    for (let i = 0; i < arr.length; ++i) {
+        let count = i + 1;
+        for (let j = 0; j < count; ++j) {
+            result.push(arr[i]);
+        }
+    }
+    return result;
 }
 function propagateItemsByPositionIndex_Arr(arr) {
-    
+    return arr.flatMap((item, i) => Array(i + 1).fill(item));
 }
-
+// console.log(propagateItemsByPositionIndex_Cycle([ 'a', 'b', 'c', null ]))
+// console.log(propagateItemsByPositionIndex_Arr([ 'a', 'b', 'c', null ]))
 /**
  * Shifts an array by n positions. If n is negative, the array is shifted to the left;
  * if positive, it is shifted to the right.
