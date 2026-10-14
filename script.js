@@ -719,8 +719,27 @@ function getHexRGBValues_Arr(arr) {
  *   getMaxItems([ 10, 2, 7, 5, 3, -5 ], 3) => [ 10, 7, 5 ]
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
-function getMaxItems() {
+function getMaxItems_Cycle(arr, n) {
+    let res = [];
+    let pool = [...arr]; 
+    let lim = Math.min(n, pool.length);
+    for (let i = 0; i < lim; ++i) {
+        let maxIndex = 0;
+        for (let j = 1; j < pool.length; ++j) {
+            if (pool[j] > pool[maxIndex]) {
+                maxIndex = j;
+            }
+        }
+        res.push(pool[maxIndex]);
+        pool.splice(maxIndex, 1);
+    }
+    return res;
 }
+function getMaxItems_Arr(arr, n) {
+    return [...arr].sort((a, b) => b - a).slice(0, n);
+}
+// console.log(getMaxItems_Cycle([ 10, 10, 10, 10 ], 3))
+// console.log(getMaxItems_Arr([ 10, 10, 10, 10 ], 3))
 /**
  * Finds and returns an array containing only the common elements found in two arrays.
  *
