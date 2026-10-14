@@ -692,8 +692,19 @@ function getIndicesOfOddNumbers() {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues() {
+function getHexRGBValues_Cycle(arr) {
+    let result = [];
+    for (let i = 0; i < arr.length; ++i) {
+        let hex = arr[i].toString(16).toUpperCase().padStart(6, '0');
+        result.push('#' + hex);
+    }
+    return result;
 }
+function getHexRGBValues_Arr(arr) {
+    return arr.map(num => '#' + num.toString(16).toUpperCase().padStart(6, '0'));
+}
+// console.log(getHexRGBValues_Cycle([ 0, 255, 16777215]))
+// console.log(getHexRGBValues_Arr([ 0, 255, 16777215]))
 /**
  * Returns the n largest values from the specified array
  *
