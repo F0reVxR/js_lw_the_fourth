@@ -436,8 +436,8 @@ function createNDimensionalArray_Arr(n, size) {
     }
     return Array.from({length: size}, () => createNDimensionalArray_Arr(n-1, size));
 }
-console.log(createNDimensionalArray_Cycle(2, 3))
-console.log(createNDimensionalArray_Arr(2, 3))
+// console.log(createNDimensionalArray_Cycle(2, 3))
+// console.log(createNDimensionalArray_Arr(2, 3))
 
 /**
  * Flattens a nested array into a single-level array.
