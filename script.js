@@ -484,8 +484,21 @@ function flattenArray_Arr(nestedArray) {
  *   selectMany([[1, 2], [3, 4], [5, 6]], (x) => x) =>   [ 1, 2, 3, 4, 5, 6 ]
  *   selectMany(['one','two','three'], (x) => x.split('')) =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany() {
+function selectMany_Cycle(arr, childrenSelector) {
+    let result = [];
+    for (let i = 0; i < arr.length; i++){
+        let children = childrenSelector(arr[i]);
+        for (let j = 0; j < children.length; j++){
+            result.push(children[j]);
+        }
+    }
+    return result;
 }
+function selectMany_Arr(arr, childrenSelector) {
+    return arr.flatMap(childrenSelector);
+}
+// console.log(selectMany_Cycle(['one','two','three'], (x)=> x.split('')))
+// console.log(selectMany_Arr(['one','two','three'], (x)=> x.split('')))
 /**
  * Every month, you record your income and expenses.
  * Expenses may be greater than income.
