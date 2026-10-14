@@ -752,8 +752,24 @@ function getMaxItems_Arr(arr, n) {
  *    findCommonElements(['a', 'b', 'c'], ['b', 'c', 'd']) => [ 'b', 'c' ]
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
-function findCommonElements() {
+function findCommonElements_Cycle(arr1, arr2) {
+    let result = [];
+    let set2 = new Set(arr2);
+    for (let i = 0; i < arr1.length; ++i) {
+        let element = arr1[i];
+        if (set2.has(element) && !result.includes(element)) {
+            result.push(element);
+        }
+    }
+    return result;
 }
+function findCommonElements_Arr(arr1, arr2) {
+    let set2 = new Set(arr2);
+    let common = arr1.filter(item => set2.has(item));
+    return [...new Set(common)];
+}
+// console.log(findCommonElements_Arr([1, 2, 3], [2, 3, 4]))
+// console.log(findCommonElements_Cycle([1, 2, 3], [2, 3, 4]))
 /**
  * Finds the length of the longest increasing and uninterrupted subsequence of a given array of integers.
  *
@@ -765,7 +781,11 @@ function findCommonElements() {
  *    findLongestIncreasingSubsequence([3, 10, 2, 1, 20]) => longest is [3, 10] and [1, 20] => 2
  *    findLongestIncreasingSubsequence([50, 3, 10, 7, 40, 80]) => longest is [7, 40, 80] => 3
  */
-function findLongestIncreasingSubsequence() {
+function findLongestIncreasingSubsequence_Cycle(nums) {
+
+}
+function findLongestIncreasingSubsequence_Arr(nums) {
+    
 }
 /**
  * Propagates every item in sequence its position times
@@ -781,8 +801,13 @@ function findLongestIncreasingSubsequence() {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex() {
+function propagateItemsByPositionIndex_Cycle(arr) {
+
 }
+function propagateItemsByPositionIndex_Arr(arr) {
+    
+}
+
 /**
  * Shifts an array by n positions. If n is negative, the array is shifted to the left;
  * if positive, it is shifted to the right.
