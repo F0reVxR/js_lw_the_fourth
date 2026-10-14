@@ -894,8 +894,29 @@ function shiftArray_Arr(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder() {
+function sortDigitNamesByNumericOrder_Cycle(arr) {
+    const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    let counts = new Array(10).fill(0);
+    for (let i = 0; i < arr.length; ++i) {
+        let digitIndex = digits.indexOf(arr[i]);
+        if (digitIndex !== -1) {
+            counts[digitIndex]++;
+        }
+    }
+    let result = [];
+    for (let i = 0; i < counts.length; ++i) {
+        for (let j = 0; j < counts[i]; ++j) {
+            result.push(digits[i]);
+        }
+    }
+    return result;
 }
+function sortDigitNamesByNumericOrder_Arr(arr) {
+    const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    return [...arr].sort((a, b) => digits.indexOf(a) - digits.indexOf(b));
+}
+// console.log(sortDigitNamesByNumericOrder_Cycle([ 'nine','eight','nine','eight' ]))
+// console.log(sortDigitNamesByNumericOrder_Arr([ 'nine','eight','nine','eight' ]))
 /**
  * Swaps the head and tail of the specified array:
  * the head (first half) of array move to the end, the tail (last half) move to the start.
