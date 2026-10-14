@@ -456,7 +456,7 @@ function flattenArray_Cycle(nestedArray) {
     while (que.length > 0) {
         let next = que.pop();
         if (Array.isArray(next)){
-            for (let i = 0; i < next.length; i++){
+            for (let i = 0; i < next.length; ++i){
                 que.push(next[i]);
             }
         } 
@@ -486,9 +486,9 @@ function flattenArray_Arr(nestedArray) {
  */
 function selectMany_Cycle(arr, childrenSelector) {
     let result = [];
-    for (let i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; ++i){
         let children = childrenSelector(arr[i]);
-        for (let j = 0; j < children.length; j++){
+        for (let j = 0; j < children.length; ++j){
             result.push(children[j]);
         }
     }
@@ -512,8 +512,20 @@ function selectMany_Arr(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance() {
+function calculateBalance_Cycle(arr) {
+    let balance = 0;
+    for (let i = 0; i < arr.length; ++i){
+        let income = arr[i][0];
+        let expense = arr[i][1];
+        balance += (income - expense);
+    }
+    return balance;
 }
+function calculateBalance_Arr(arr) {
+    return arr.reduce((balance, [income, expense]) => balance + (income - expense), 0);
+}
+// console.log(calculateBalance_Cycle([ [ 10, 8 ], [ 5, 1 ] ]))
+// console.log(calculateBalance_Arr([ [ 10, 8 ], [ 5, 1 ] ]))
 /**
  * Breaks an array into chunks of the specified size.
  *
