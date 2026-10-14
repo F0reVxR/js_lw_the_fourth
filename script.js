@@ -567,8 +567,18 @@ function createChunks_Arr(arr, chunkSize) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds() {
+function generateOdds_Cycle(len) {
+    let res = [];
+    for (let i = 1; i < 2*len+1; i+=2){
+        res.push(i);
+    }
+    return res;
 }
+function generateOdds_Arr(len) {
+    return Array.from({length:len}, (_,i)=>2*i+1);
+}
+// console.log(generateOdds_Cycle(5))
+// console.log(generateOdds_Arr(5))
 /**
  * Returns an element from the multidimensional array by the specified indices.
  *
